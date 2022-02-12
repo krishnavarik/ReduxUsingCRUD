@@ -1,16 +1,13 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import Home from "./Pages/Home";
-import AddUser from "./Pages/AddUser";
-import EditUser from "./Pages/EditUser";
-const App = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<Home></Home>}></Route>
-      <Route path="/addUser" element={<AddUser></AddUser>}></Route>
-      <Route path="/edituser/:id" element={<EditUser></EditUser>}></Route>
-    </Routes>
-  );
-};
+import { useSelector } from "react-redux";
+import Login from "./components/Login";
+import Logout from "./components/Logout";
+
+function App() {
+  const user = useSelector((state) => state.user.user);
+
+  console.log(user);
+  return <>{!user ? <Login></Login> : <Logout />}</>;
+}
 
 export default App;
